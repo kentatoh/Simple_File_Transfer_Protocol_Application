@@ -1,7 +1,7 @@
 # Simple_File_Transfer_Protocol_Application
 A simple and minimal SFTP application build in C, with lots of bugs
 
-Available commands:
+Available commands:  
 pwd - to display the current directory of the server that is serving the client  
 lpwd - to display the current directory of the client  
 dir - to display the file names under the current directory of the server that is serving the client  
