@@ -16,7 +16,7 @@ Bugs:
 Logging function is not working.  
 Max transfer size of 256 bytes.  
 Lacks of validation  
-+ tons of other bugs  
+tons of other bugs  
 
 In collaboration with Kenneth Andita  
 
