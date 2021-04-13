@@ -12,13 +12,13 @@ get filename - to download the named file from the current directory of the remo
 put filename - to upload the named file from the current directory of the client to the current directory of the remote server.  
 quit - to terminate the myftp session.  
 
-Bugs:
-Logging function is not working.
-Max transfer size of 256 bytes.
-Lacks of validation
-+ tons of other bugs
+Bugs:  
+Logging function is not working.  
+Max transfer size of 256 bytes.  
+Lacks of validation  
++ tons of other bugs  
 
-In collaboration with Kenneth Andita
+In collaboration with Kenneth Andita  
 
-First created: 25/03/2021
-Last updated: 09/04/2021
+First created: 25/03/2021  
+Last updated: 09/04/2021  
