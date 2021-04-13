@@ -1,0 +1,108 @@
+Chosen protocol: TCP
+=============================================================================================
+
+Opcode      Meaning (Client)      Meaning (Server)
+P           pwd request           pwd request confirmation
+D           dir request           dir request confirmation
+C           cd request            cd request confirmation
+G           get request           get request confirmation
+U           put request           put request confirmation
+E           server error          error
+N           server error          error
+X           server error          error
+
+=============================================================================================
+
+- pwd request
+  
+  The client sends the opcode "P" to the server
+  
+  The server receives the opcode "P", it responds with the following message:
+    + Opcode P followed by ASCII representing [server directory]
+  
+  The client receives the opcode "P":
+    + print that the response from the server is received
+    + read the server response [server directory]
+    + print the current directory of the server
+
+=============================================================================================    
+
+- dir request
+
+  The client sends the opcode "D" to the server
+  
+  The server receives the opcode "D", it responds with one of the following message:
+    + Opcode D followed by ASCII representing [files in server directory]
+    + Opcode X > error, unable to open folder
+  
+  The client receives the opcode "D":
+    + print that the response from the server is received
+    + read the server response [file in server directory]
+    + print the list of file in the directory of the server
+    
+  The client receives the opcode "X":
+    + print that there is an error opening the folder
+
+=============================================================================================
+
+- cd request
+
+  The client sends the opcode "C" to the server, followed by:
+    + the sequence of ASCII characters representing the directory
+  
+  The server receives the opcode "C", it responds with the following message:
+    + Opcode C followed by ASCII representing [current directory]
+    + Opcode X > error in reading request
+    + Opcode E > error changing directory
+  
+  The client receives the opcode "C":
+    + print that the response from the server is received
+    + read the server response [current directory]
+    + print the current directory of the server
+  
+  The client receives the opcode "X":
+    + print that there is an error reading the request
+  
+  The client receives the opcode "E":
+    + print that there is an error while trying to change directory
+    
+=============================================================================================
+  
+- get request
+
+  The client sends the opcode "G" to the server, followed by:
+    + the sequence of ASCII characters representing the filename
+  
+  The server receives the opcode "G", it responds with one of the following message:
+    + Opcode G > [file] can be opened, continue with the process
+    + Opcode X > error in reading client’s request
+    + Opcode N > [file] does not exist
+  
+  The client receives the opcode "G":
+    + download the [file]
+
+  The client receives the opcode "X":
+    + print that there is an error from the server
+
+  The client receives the opcode "N":
+    + print that file does not exist
+
+=============================================================================================
+
+- put request
+
+  The client sends the opcode "U" to the server, followed by:
+    + the sequence of characters representing the filename
+  
+  The server receives the opcode "U", it responds with one of the following message:
+    + Opcode U > continue to download the [file]
+    + Opcode N > unable to open [file]
+
+  The client receives the opcode "U":
+    + upload bytes representing the [file]
+    + print that the file successfully uploaded to the server
+
+  The client receives the opcode "N":
+    + print that the server unable to download the file
+
+=============================================================================================
